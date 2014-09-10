@@ -149,9 +149,9 @@ public class RequestQueue {
         if (mCacheDispatcher != null) {
             mCacheDispatcher.quit();
         }
-        for (int i = 0; i < mDispatchers.length; i++) {
-            if (mDispatchers[i] != null) {
-                mDispatchers[i].quit();
+        for (NetworkDispatcher mDispatcher : mDispatchers) {
+            if (mDispatcher != null) {
+                mDispatcher.quit();
             }
         }
     }

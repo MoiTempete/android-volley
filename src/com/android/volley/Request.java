@@ -186,11 +186,9 @@ public abstract class Request<T> implements Comparable<Request<T>> {
     private static int findDefaultTrafficStatsTag(String url) {
         if (!TextUtils.isEmpty(url)) {
             Uri uri = Uri.parse(url);
-            if (uri != null) {
-                String host = uri.getHost();
-                if (host != null) {
-                    return host.hashCode();
-                }
+            String host = uri.getHost();
+            if (host != null) {
+                return host.hashCode();
             }
         }
         return 0;
