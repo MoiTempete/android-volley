@@ -256,8 +256,8 @@ public class BasicNetwork implements Network {
      */
     private static Map<String, String> convertHeaders(Header[] headers) {
         Map<String, String> result = new HashMap<String, String>();
-        for (int i = 0; i < headers.length; i++) {
-            result.put(headers[i].getName(), headers[i].getValue());
+        for (Header header : headers) {
+            result.put(header.getName(), header.getValue());
         }
         return result;
     }

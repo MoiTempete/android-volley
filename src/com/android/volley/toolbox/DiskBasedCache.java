@@ -157,9 +157,7 @@ public class DiskBasedCache implements Cache {
                 entry.size = file.length();
                 putEntry(entry.key, entry);
             } catch (IOException e) {
-                if (file != null) {
-                   file.delete();
-                }
+                file.delete();
             } finally {
                 try {
                     if (fis != null) {
@@ -482,7 +480,7 @@ public class DiskBasedCache implements Cache {
     }
 
     static void writeInt(OutputStream os, int n) throws IOException {
-        os.write((n >> 0) & 0xff);
+        os.write((n) & 0xff);
         os.write((n >> 8) & 0xff);
         os.write((n >> 16) & 0xff);
         os.write((n >> 24) & 0xff);
@@ -490,7 +488,7 @@ public class DiskBasedCache implements Cache {
 
     static int readInt(InputStream is) throws IOException {
         int n = 0;
-        n |= (read(is) << 0);
+        n |= (read(is));
         n |= (read(is) << 8);
         n |= (read(is) << 16);
         n |= (read(is) << 24);
@@ -498,7 +496,7 @@ public class DiskBasedCache implements Cache {
     }
 
     static void writeLong(OutputStream os, long n) throws IOException {
-        os.write((byte)(n >>> 0));
+        os.write((byte)(n));
         os.write((byte)(n >>> 8));
         os.write((byte)(n >>> 16));
         os.write((byte)(n >>> 24));
@@ -510,7 +508,7 @@ public class DiskBasedCache implements Cache {
 
     static long readLong(InputStream is) throws IOException {
         long n = 0;
-        n |= ((read(is) & 0xFFL) << 0);
+        n |= ((read(is) & 0xFFL));
         n |= ((read(is) & 0xFFL) << 8);
         n |= ((read(is) & 0xFFL) << 16);
         n |= ((read(is) & 0xFFL) << 24);
